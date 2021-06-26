@@ -1,0 +1,27 @@
+{
+  "name": "Assesment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vedantmamgain/Assesment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vedantmamgain/Assesment/issues"
+  },
+  "homepage": "https://github.com/vedantmamgain/Assesment#readme",
+  "dependencies": {
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.2.6",
+    "mongoose": "^5.12.15",
+    "morgan": "^1.10.0"
+  }
+}
