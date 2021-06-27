@@ -22,34 +22,27 @@ exports.getEmails = async (req, res) => {
 };
 
 exports.postEmails = async (req, res) => {
-    try {
-        let send = {};
-        send.title = req.body.title;
-        send.userEmail = req.body.userEmail;
-        send.sendToEmail = req.body.sendToEmail;
-        send.ccEmail = req.body.ccEmail;
-        send.repeat = req.body.repeat;
-        send.body = req.body.body;
+    let send = {};
+    send.title = req.body.title;
+    send.userEmail = req.body.userEmail;
+    send.sendToEmail = req.body.sendToEmail;
+    send.ccEmail = req.body.ccEmail;
+    send.repeat = req.body.repeat;
+    send.body = req.body.body;
 
-        const email = await EMAIL.create(send);
-        await schedule(req);
-        let user = await USER.findOneAndUpdate(
-            { email: req.body.userEmail },
-            { $push: { emailList: email._id } },
-            { safe: true, upsert: true, new: true }
-        );
+    const email = await EMAIL.create(send);
+    await schedule(req);
+    let user = await USER.findOneAndUpdate(
+        { email: req.body.userEmail },
+        { $push: { emailList: email._id } },
+        { safe: true, upsert: true, new: true }
+    );
 
-        res.status(200).json({
-            status: "Done",
-            message: "Added Recurring Email",
-            data: user,
-        });
-    } catch (err) {
-        res.status(404).json({
-            status: "fail",
-            message: err,
-        });
-    }
+    res.status(200).json({
+        status: "Done",
+        message: "Added Recurring Email",
+        data: user,
+    });
 };
 
 exports.getAllHistory = async (req, res) => {
