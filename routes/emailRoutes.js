@@ -9,11 +9,11 @@ router.route("/user").post(userController.createUser);
 
 router.route("/emails").post(emailController.postEmails);
 
-router.route("getEmails").post(emailController.getEmails);
+router.route("/getEmails").post(emailController.getEmails);
 
 router.route("/history").post(emailController.postHistory);
 
-router.route("getHistory").post(emailController.getHistory);
+router.route("/getHistory").post(emailController.getHistory);
 
 router.route("/getAllHistory").get(emailController.getAllHistory);
 
