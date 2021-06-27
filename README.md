@@ -1,3 +1,6 @@
+### Important Note
+This is to inform you that the whole app is working completely fine but there is one issue. Since, google's spam checking algorithm is pretty sophisticated, so there can be some cases where the email id used will be flagged. This would generally happen as Heroku keeps changing the ip address so Google flags the server.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
