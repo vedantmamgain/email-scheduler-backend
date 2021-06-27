@@ -9,3 +9,4 @@ EMAIL Scheduler
       7) Send emails util ✅
       8) Populate History ✅
       9) Setup scheduler
+      10) Deploy API ✅
