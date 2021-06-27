@@ -7,7 +7,7 @@ module.exports = async function (data) {
     let monthly = data.body.monthly;
 
     if (seconds) {
-        if (data.body.time.seconds == 2) {
+        if (data.body.time.seconds == 20) {
             schedule.scheduleJob("*/2 * * * * *", async function () {
                 await postHistory.postHistory(data);
                 console.log("sending a mail every 2 seconds");
