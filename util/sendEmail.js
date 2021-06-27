@@ -16,7 +16,7 @@ module.exports = async function (options) {
     });
 
     const mailOptions = {
-        from: "Vedant Mamgain",
+        from: "John Doe",
         to: options.body.sendToEmail,
         html: options.body.body,
         text: options.body.message,
