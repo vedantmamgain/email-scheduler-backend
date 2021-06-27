@@ -11,7 +11,7 @@ mongoose
     })
     .then(() => console.log("Datbase Connected"));
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 3001;
 const server = app.listen(port, () => {
     console.log(`App running on port ${port}...`);
 });
