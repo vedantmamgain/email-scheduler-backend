@@ -11,7 +11,9 @@ router
 
 router
     .route("/history")
-    .get(emailController.getEmails)
+    .get(emailController.getHistory)
     .post(emailController.postHistory);
+
+router.route("/getAllHistory").get(emailController.getAllHistory);
 
 module.exports = router;

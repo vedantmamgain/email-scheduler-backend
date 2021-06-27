@@ -3,13 +3,13 @@ const USER = require("../models/userModel");
 exports.createUser = async (req, res) => {
     //check if user has been created
 
-    const { name, userEmail, emailList, history } = req.body;
+    const { name, userEmail, emailList, histories } = req.body;
 
     let user = {};
     user.name = name;
     user.email = userEmail;
     user.emailList = emailList;
-    user.history = history;
+    user.histories = histories;
 
     const doesUserExit = await USER.exists({ email: userEmail });
 

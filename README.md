@@ -6,4 +6,5 @@ EMAIL Scheduler
       4) Make a new user if haven't been created else print the email list ✅
       5) Create a new email and add it to user ✅
       6) Populate the emails ✅
-      7) Send emails util
+      7) Send emails util ✅
+      8) Populate History 

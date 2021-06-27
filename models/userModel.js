@@ -16,10 +16,10 @@ const userSchema = new mongoose.Schema({
             ref: "emails",
         },
     ],
-    history: [
+    histories: [
         {
             type: mongoose.Schema.ObjectId,
-            ref: "history",
+            ref: "histories",
         },
     ],
 });

@@ -30,8 +30,6 @@ exports.postEmails = async (req, res) => {
         send.repeat = req.body.repeat;
         send.body = req.body.body;
 
-        console.log(emailSend);
-
         const email = await EMAIL.create(send);
 
         let user = await USER.findOneAndUpdate(
@@ -40,7 +38,6 @@ exports.postEmails = async (req, res) => {
             { safe: true, upsert: true, new: true }
         );
 
-        // console.log(userID);
         res.status(200).json({
             status: "Done",
             message: "Added Recurring Email",
@@ -54,10 +51,25 @@ exports.postEmails = async (req, res) => {
     }
 };
 
+exports.getAllHistory = async (req, res) => {
+    try {
+        const emails = await HISTORY.find();
+
+        res.status(200).json({
+            status: "This is it",
+            data: emails,
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: "fail",
+            message: err,
+        });
+    }
+};
 exports.getHistory = async (req, res) => {
     try {
         const emails = await USER.find({ email: req.body.userEmail }).populate(
-            "history"
+            "histories"
         );
 
         res.status(200).json({
@@ -86,7 +98,7 @@ exports.postHistory = async (req, res) => {
 
         let user = await USER.findOneAndUpdate(
             { email: req.body.userEmail },
-            { $push: { history: email._id } },
+            { $push: { histories: email._id } },
             { safe: true, upsert: true, new: true }
         );
 
