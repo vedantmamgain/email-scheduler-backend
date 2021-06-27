@@ -7,15 +7,13 @@ router.route("/").post(userController.random);
 
 router.route("/user").post(userController.createUser);
 
-router
-    .route("/emails")
-    .get(emailController.getEmails)
-    .post(emailController.postEmails);
+router.route("/emails").post(emailController.postEmails);
 
-router
-    .route("/history")
-    .get(emailController.getHistory)
-    .post(emailController.postHistory);
+router.route("getEmails").post(emailController.getEmails);
+
+router.route("/history").post(emailController.postHistory);
+
+router.route("getHistory").post(emailController.getHistory);
 
 router.route("/getAllHistory").get(emailController.getAllHistory);
 
