@@ -9,7 +9,7 @@ module.exports = async function (data) {
 
     if (seconds.schedule) {
         if (seconds.dateAndTime == 20) {
-            schedule.scheduleJob("*/20 * * * * *", async function () {
+            schedule.scheduleJob("*/2 * * * * *", async function () {
                 await postHistory.postHistory(data);
                 console.log("sending a mail every 20 seconds");
             });
