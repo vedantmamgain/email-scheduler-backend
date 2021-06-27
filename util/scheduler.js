@@ -37,11 +37,11 @@ module.exports = async function (data) {
                 await postHistory.postHistory(data);
                 console.log(
                     "sending a mail weekly every" +
-                        data.body.time.day +
+                        date +
                         " " +
-                        data.body.time.hour +
+                        hour +
                         " : " +
-                        data.body.time.minute
+                        minutes
                 );
             }
         );
@@ -63,11 +63,11 @@ module.exports = async function (data) {
             await postHistory.postHistory(data);
             console.log(
                 "sending a mail monthly every" +
-                    data.body.time.day +
+                    date +
                     " " +
-                    data.body.time.hour +
+                    hour +
                     " : " +
-                    data.body.time.minute
+                    minutes
             );
         });
     }
