@@ -6,8 +6,8 @@ const router = require("./routes/emailRoutes");
 require("dotenv").config();
 
 app.use(morgan("dev"));
-app.use(express.json());
-
+// app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/", router);
 
 module.exports = app;
