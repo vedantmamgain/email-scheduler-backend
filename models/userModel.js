@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -10,12 +9,17 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please provide your email"],
         unique: true,
         lowercase: true,
-        validate: [validator.isEmail, "Please provide a valid email"],
     },
     emailList: [
         {
             type: mongoose.Schema.ObjectId,
-            ref: "product",
+            ref: "emails",
+        },
+    ],
+    history: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "history",
         },
     ],
 });

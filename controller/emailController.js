@@ -1,22 +1,16 @@
 const USER = require("../models/userModel");
 const EMAIL = require("../models/emailModel");
-
+const HISTORY = require("../models/historyModel");
+const sendEmail = require("../util/sendEmail");
 exports.getEmails = async (req, res) => {
     try {
-        // const updatedUser = await User.findById(req.user._id)
-        // .populate({
-        //   path: "verifiedOrders",
-        //   model: "verifiedOrders",
-        //   populate: {
-        //     path: "products",
-        //     model: "product",
-        //     select: { photo: 1, title: 1, photo: 1, price: 1 },
-        //   },
-        // })
-        // .populate("cart");
+        const emails = await USER.find({ email: req.body.userEmail }).populate(
+            "emailList"
+        );
+
         res.status(200).json({
             status: "This is it",
-            message: "Hurray",
+            data: emails,
         });
     } catch (err) {
         res.status(404).json({
@@ -34,22 +28,23 @@ exports.postEmails = async (req, res) => {
         send.sendToEmail = req.body.sendToEmail;
         send.ccEmail = req.body.ccEmail;
         send.repeat = req.body.repeat;
+        send.body = req.body.body;
+
+        console.log(emailSend);
 
         const email = await EMAIL.create(send);
-        let emailId = email._id;
-        let userID = req.body.userID;
 
-        let user = await User.findByIdAndUpdate(
-            userID,
-            { $push: { emailList: emailId } },
+        let user = await USER.findOneAndUpdate(
+            { email: req.body.userEmail },
+            { $push: { emailList: email._id } },
             { safe: true, upsert: true, new: true }
         );
 
-        console.log(userID);
+        // console.log(userID);
         res.status(200).json({
             status: "Done",
             message: "Added Recurring Email",
-            data: [email, user],
+            data: user,
         });
     } catch (err) {
         res.status(404).json({
@@ -61,20 +56,13 @@ exports.postEmails = async (req, res) => {
 
 exports.getHistory = async (req, res) => {
     try {
-        // const updatedUser = await User.findById(req.user._id)
-        // .populate({
-        //   path: "verifiedOrders",
-        //   model: "verifiedOrders",
-        //   populate: {
-        //     path: "products",
-        //     model: "product",
-        //     select: { photo: 1, title: 1, photo: 1, price: 1 },
-        //   },
-        // })
-        // .populate("cart");
+        const emails = await USER.find({ email: req.body.userEmail }).populate(
+            "history"
+        );
+
         res.status(200).json({
             status: "This is it",
-            message: "Hurray",
+            data: emails,
         });
     } catch (err) {
         res.status(404).json({
@@ -83,19 +71,30 @@ exports.getHistory = async (req, res) => {
         });
     }
 };
-exports.postHistoryEmails = async (req, res) => {
+exports.postHistory = async (req, res) => {
     try {
-        const emailId = req.body.emailId;
-        let userID = req.body.userID;
-        let user = await User.findByIdAndUpdate(
-            userID,
-            { $push: { emailList: emailId } },
+        let send = {};
+        send.title = req.body.title;
+        send.userEmail = req.body.userEmail;
+        send.sendToEmail = req.body.sendToEmail;
+        send.ccEmail = req.body.ccEmail;
+        send.body = req.body.body;
+        send.timePosted = new Date(Date.now()).toString();
+
+        await sendEmail(req);
+        const email = await HISTORY.create(send);
+
+        let user = await USER.findOneAndUpdate(
+            { email: req.body.userEmail },
+            { $push: { history: email._id } },
             { safe: true, upsert: true, new: true }
         );
+
+        // console.log(userID);
         res.status(200).json({
-            status: "This is it",
-            message: "Hurray",
-            data: [user],
+            status: "Done",
+            message: "Added Recurring Email",
+            data: user,
         });
     } catch (err) {
         res.status(404).json({

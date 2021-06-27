@@ -1,28 +1,29 @@
 const USER = require("../models/userModel");
-const EMAIL = require("../models/emailModel");
 
-exports.createUser = async (req, res, next) => {
+exports.createUser = async (req, res) => {
     //check if user has been created
-    try {
-        let send = {};
-        send.title = req.body.title;
-        send.userEmail = req.body.userEmail;
-        send.sendToEmail = req.body.sendToEmail;
-        send.ccEmail = req.body.ccEmail;
-        send.repeat = req.body.repeat;
 
-        const user = await EMAIL.create(user);
+    const { name, userEmail, emailList, history } = req.body;
 
-        console.log(userID);
+    let user = {};
+    user.name = name;
+    user.email = userEmail;
+    user.emailList = emailList;
+    user.history = history;
+
+    const doesUserExit = await USER.exists({ email: userEmail });
+
+    if (!doesUserExit) {
+        const person = await USER.create(user);
         res.status(200).json({
             status: "Done",
             message: "Added Recurring Email",
-            data: [email, user],
+            data: person,
         });
-    } catch (err) {
-        res.status(404).json({
-            status: "fail",
-            message: err,
+    } else {
+        res.status(400).json({
+            status: "User Already Present",
+            message: "User Already Present",
         });
     }
 };
