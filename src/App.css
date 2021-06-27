@@ -1,0 +1,15 @@
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.editor-class {
+  background-color: #ced4da;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  min-height: 300px;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}
