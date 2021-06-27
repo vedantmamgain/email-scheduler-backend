@@ -18,7 +18,8 @@ module.exports = async function (data) {
                 console.log("sending a mail every 3 seconds");
             });
         }
-    } else if (weekly) {
+    }
+    if (weekly) {
         //Weekly
         schedule.scheduleJob(
             {
@@ -38,7 +39,8 @@ module.exports = async function (data) {
                 );
             }
         );
-    } else if (monthly) {
+    }
+    if (monthly) {
         //monthly
         var rule = new schedule.RecurrenceRule();
         rule.month = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -57,7 +59,8 @@ module.exports = async function (data) {
                     data.body.time.minute
             );
         });
-    } else {
+    }
+    if (yearly) {
         //yearly
         let cronString =
             data.body.time.minute +

@@ -3,6 +3,8 @@ const userController = require("../controller/userController");
 const express = require("express");
 const router = express.Router();
 
+router.route("/").post(userController.random);
+
 router.route("/user").post(userController.createUser);
 
 router
