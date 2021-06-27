@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 router.route("/user").post(userController.createUser);
+
 router
     .route("/emails")
     .get(emailController.getEmails)
@@ -15,5 +16,7 @@ router
     .post(emailController.postHistory);
 
 router.route("/getAllHistory").get(emailController.getAllHistory);
+
+router.route("/scheduler").post(emailController.runScheduler);
 
 module.exports = router;
