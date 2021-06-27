@@ -1,11 +1,10 @@
 const USER = require("../models/userModel");
 
 exports.random = async (req, res) => {
-    console.log(req);
+    console.log(req.body);
     res.status(200).json({
         status: "Done",
         message: "Simple Random",
-        data: person,
     });
 };
 
