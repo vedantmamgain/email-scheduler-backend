@@ -12,6 +12,8 @@
 - [MongoDB](https://www.mongodb.com/) - MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era
 - [Node.js](https://nodejs.org/en/) - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine
 
+## Backend URL 
+https://github.com/vedantmamgain/flippr-backend
 
 ## Architecture
 
